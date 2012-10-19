@@ -54,7 +54,7 @@
 		<!-- Create the distribution directory -->
 		<mkdir dir="${dist}/lib"/>
 
-		<jar jarfile="${dist}/lib/sshConfigEdit.jar" basedir="${build}/classes"/>
+		<jar jarfile="${dist}/lib/ssh-config-edit.jar" basedir="${build}/classes"/>
 	</target>
 
 	<target name="pub" depends="dist,increment" >
