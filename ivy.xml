@@ -1,0 +1,19 @@
+<ivy-module version="2.0">
+    <info organisation="com.spider" module="ssh-config-edit"/>
+    <configurations defaultconf="build" defaultconfmapping="build->default;deployment->default;test->default">
+    	<conf name="build" />
+    	<conf name="deployment" />
+    	<conf name="test" />
+    </configurations>
+    <dependencies>
+		
+    	<!-- common utils -->
+    	<dependency org="commons-lang" name="commons-lang" rev="2.6" conf="build" />
+    	
+		<!-- For testing code -->
+		<dependency org="org.mockito" name="mockito-all" rev="1.9.5-rc1" conf="test"/>
+		<dependency org="junit" name="junit" rev="4.10" conf="test" />
+		<dependency org="commons-io" name="commons-io" rev="2.4" conf="test" />
+		
+    </dependencies>
+</ivy-module>
