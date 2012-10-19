@@ -9,6 +9,10 @@ import org.junit.Test;
 
 public class SshConfigFileTest {
 	
+	/**
+	 * Tests to ensure that the data is correctly read and written from the file
+	 * @throws Exception
+	 */
 	@Test
 	public void testParsing() throws Exception {
 		SshConfigFile conf = new SshConfigFile();
@@ -35,6 +39,10 @@ public class SshConfigFileTest {
 		
 	}
 	
+	
+	/**
+	 * Ensures that properties with different values and whitespace are correctly read.
+	 */
 	@Test
 	public void testSplitProperty() {
 		SshConfigFile conf = new SshConfigFile();
@@ -58,6 +66,10 @@ public class SshConfigFileTest {
 
 	}
 	
+	
+	/**
+	 * Ensures that name value pairs are properly formatted for writing to the output stream.
+	 */
 	@Test
 	public void testCreatePropertyLine() {
 		SshConfigFile conf = new SshConfigFile();

@@ -14,6 +14,11 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 
+/**
+ * Represents a SSH Config file with hosts where each host contains a set of properties
+ * @author kolz
+ *
+ */
 public class SshConfigFile {
 
 	protected File source;
@@ -40,6 +45,12 @@ public class SshConfigFile {
 		
 	}
 	
+	/**
+	 * Parses the input stream which contains the SSH Config file, adding the data
+	 * to the current object.
+	 * @param input
+	 * @throws IOException
+	 */
 	protected void parse(InputStream input) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 		String line;
@@ -66,6 +77,10 @@ public class SshConfigFile {
 		}
 	}
 	
+	/**
+	 * Saves Host objects to disk at the original location.
+	 * @throws IOException
+	 */
 	public void save() throws IOException {
 		FileWriter writer = new FileWriter(source);
 		
@@ -75,6 +90,11 @@ public class SshConfigFile {
 		writer.close();
 	}
 	
+	/**
+	 * Writes the Host objects to the writer opened by the save() method.
+	 * @param writer
+	 * @throws IOException
+	 */
 	protected void save(Writer writer) throws IOException {
 		for(Host h : hosts) {
 			writer.write(String.format(HOST_FORMAT, h.getName()) + lineTerminator);
@@ -84,6 +104,12 @@ public class SshConfigFile {
 		}
 	}
 	
+	/**
+	 * Formats a name value pair for insertion into the Config file stream
+	 * @param name The name of the property
+	 * @param value The value of the property
+	 * @return
+	 */
 	protected String formatProperty(String name, String value) {
 		if(value == null) {
 			value = "";
@@ -91,6 +117,13 @@ public class SshConfigFile {
 		return String.format(PROPERTY_FORMAT, name, value);
 	}
 	
+	/**
+	 * Splits a property line from the source file into two pieces, a name and a value.
+	 * This method is space preserving so that any whitespace in the value is kept
+	 * as it was in the source file.
+	 * @param s The property line from the config file
+	 * @return
+	 */
 	protected String[] splitProperty(String s) {
 		s = s.trim();
 		String[] result = new String[2];
