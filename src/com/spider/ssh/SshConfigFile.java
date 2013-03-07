@@ -165,6 +165,20 @@ public class SshConfigFile {
 		
 		return result;
 	}
+	
+	/**
+	 * Gets the host with <code>name</code> or returns null.
+	 * @param name
+	 * @return
+	 */
+	public Host getHost(String name) {
+		for(Host h : getHosts()) {
+			if(StringUtils.equalsIgnoreCase(name, h.getName())) {
+				return h;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Gets the hosts in the config file

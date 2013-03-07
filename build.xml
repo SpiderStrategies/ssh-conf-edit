@@ -1,11 +1,11 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="ssh-config-edit" default="pub" basedir=".">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="sshConfigEdit" default="pub" basedir=".">
 	<description>
         a build for the ssh-config-edit
     </description>
 	<!-- set global properties for this build -->
 	<property name="src" location="src"/>
 	<property name="build" location="compiled"/>
-	<property name="dist"  location="dist"/>
+	<property name="dist"  location="distrib"/>
 
 
 	<target name="increment">
@@ -27,7 +27,7 @@
 	<target name="compile" depends="init"
         description="compile the source" >
 		
-		<ivy:cachepath pathid="ivy.cachepath.dep" conf="deployment"/>
+		<ivy:cachepath pathid="ivy.cachepath.dep" conf="default"/>
 		<ivy:cachepath pathid="ivy.cachepath.build" conf="build"/>
 
 		<path id="ivy.deps">
@@ -52,14 +52,16 @@
 	
 	<target name="dist" depends="compile" description="generate the distribution" >
 		<!-- Create the distribution directory -->
-		<mkdir dir="${dist}/lib"/>
+		<mkdir dir="${dist}/jars"/>
+		<mkdir dir="${dist}/sources"/>
 
-		<jar jarfile="${dist}/lib/ssh-config-edit.jar" basedir="${build}/classes"/>
+		<jar jarfile="${dist}/jars/sshConfigEdit.jar" basedir="${build}/classes"/>
+		<jar jarfile="${dist}/jars/sshConfigEdit-sources.jar" basedir="${src}" />
 	</target>
 
-	<target name="pub" depends="dist,increment" >
-		<ivy:publish resolver="local" pubrevision="1.0.0.${build.number}" update="true" overwrite="true">
-			<artifacts pattern="${dist}/lib/[artifact].[ext]" />
+	<target name="pub" depends="increment,dist" >
+		<ivy:publish resolver="local" pubrevision="1.0.0.${build.number}" update="true" overwrite="true" conf="default">
+			<artifacts pattern="${dist}/jars/[artifact].jar" />
 		</ivy:publish>
 	</target>
 

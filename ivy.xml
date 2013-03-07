@@ -1,10 +1,14 @@
 <ivy-module version="2.0">
-    <info organisation="com.spider" module="ssh-config-edit"/>
-    <configurations defaultconf="build" defaultconfmapping="build->default;deployment->default;test->default">
+    <info organisation="com.spider" module="sshConfigEdit"/>
+    <configurations defaultconf="default" defaultconfmapping="build->default;test->default">
     	<conf name="build" />
-    	<conf name="deployment" />
+    	<conf name="default" />
     	<conf name="test" />
     </configurations>
+     <publications> 
+        <artifact name="sshConfigEdit" type="jar" ext="jar" conf="default"/> 
+        <artifact name="sshConfigEdit-sources" type="source" ext="jar" conf="default"/> 
+    </publications>
     <dependencies>
 		
     	<!-- common utils -->

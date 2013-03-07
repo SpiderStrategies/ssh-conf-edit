@@ -54,6 +54,14 @@ public class SshConfigFileTest {
 		
 	}
 	
+	@Test
+	public void testGetHost() throws Exception {
+		SshConfigFile conf = new SshConfigFile();
+		conf.parse(getClass().getClassLoader().getResourceAsStream("com/spider/ssh/test1.conf"));
+		assertNotNull(conf.getHost("test2"));
+		
+	}
+	
 	
 	/**
 	 * Ensures that properties with different values and whitespace are correctly read.
